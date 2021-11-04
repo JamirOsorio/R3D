@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tutoria.domingo.web;
+package tutoria.domingo.controlador;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +29,7 @@ import tutoria.domingo.servicios.ServiciosCategoria;
 @RestController
 @RequestMapping("/api/Category")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class WebCategoria {
+public class ControladorCategoria {
     @Autowired
     private ServiciosCategoria servicios;
     @GetMapping("/all")

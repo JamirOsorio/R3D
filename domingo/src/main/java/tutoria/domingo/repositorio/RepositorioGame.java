@@ -8,34 +8,33 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import tutoria.domingo.interfaces.InterfaceOrtesis;
 import tutoria.domingo.modelo.Mensaje;
-import tutoria.domingo.modelo.Ortesis;
+import tutoria.domingo.modelo.Game;
+import tutoria.domingo.interfaces.InterfaceGame;
 
 /**
  *
  * @author USUARIO
  */
 @Repository
-public class RepositorioOrtesis {
-     @Autowired
-    private InterfaceOrtesis crud;
+public class RepositorioGame {
     
+    @Autowired
+    private InterfaceGame crud;
 
-    public List<Ortesis> getAll(){
-        return (List<Ortesis>) crud.findAll();       
+    public List<Game> getAll(){
+        return (List<Game>) crud.findAll();
     }
-    
-    public Optional <Ortesis> getOrthesis(int id){
+
+    public Optional<Game> getGame(int id){
         return crud.findById(id);
     }
-    
-    public Ortesis save(Ortesis ortesis){
-        return crud.save(ortesis);
+
+    public Game save(Game game){
+        return crud.save(game);
     }
-      public void delete(Ortesis ortesis){
-        crud.delete(ortesis);
+    public void delete(Game game){
+        crud.delete(game);
     }
-    
     
 }

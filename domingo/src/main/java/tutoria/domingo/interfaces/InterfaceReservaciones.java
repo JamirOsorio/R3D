@@ -5,12 +5,12 @@
 package tutoria.domingo.interfaces;
 
 import org.springframework.data.repository.CrudRepository;
-import tutoria.domingo.modelo.Reservacion;
+import tutoria.domingo.modelo.Reservaciones;
 
 /**
  *
  * @author USUARIO
  */
-public interface InterfaceReservacion extends CrudRepository<Reservacion,Integer> {
+public interface InterfaceReservaciones extends CrudRepository<Reservaciones,Integer> {
     
 }

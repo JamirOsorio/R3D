@@ -21,17 +21,18 @@ import javax.persistence.Id;
  * @author USUARIO
  */
 @Entity
-@Table(name = "category")
+@Table(name="category")
 public class Categoria implements Serializable {
+    
     @Id
-    @GeneratedValue (strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
-    @JsonIgnoreProperties({"category","message"})
-    private List<Ortesis> ortopedics;
+    @JsonIgnoreProperties("category")
+    private List<Game> games;
 
     public Integer getId() {
         return id;
@@ -57,14 +58,13 @@ public class Categoria implements Serializable {
         this.description = description;
     }
 
-    public List<Ortesis> getOrtopedics() {
-        return ortopedics;
+    public List<Game> getGames() {
+        return games;
     }
 
-    public void setOrtopedics(List<Ortesis> ortopedics) {
-        this.ortopedics = ortopedics;
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
-    
     
     
     

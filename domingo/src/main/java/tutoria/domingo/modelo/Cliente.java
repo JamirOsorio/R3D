@@ -36,7 +36,7 @@ public class Cliente implements Serializable{
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
-    public List<Reservacion>reservations; 
+    public List<Reservaciones>reservations; 
 
     public Integer getIdClient() {
         return idClient;
@@ -86,11 +86,11 @@ public class Cliente implements Serializable{
         this.messages = messages;
     }
 
-    public List<Reservacion> getReservations() {
+    public List<Reservaciones> getReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservacion> reservations) {
+    public void setReservations(List<Reservaciones> reservations) {
         this.reservations = reservations;
     }
     

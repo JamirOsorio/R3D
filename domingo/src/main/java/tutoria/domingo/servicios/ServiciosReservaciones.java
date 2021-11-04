@@ -8,31 +8,31 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tutoria.domingo.modelo.Reservacion;
-import tutoria.domingo.repositorio.RepositorioReservacion;
+import tutoria.domingo.modelo.Reservaciones;
+import tutoria.domingo.repositorio.RepositorioReservaciones;
 
 /**
  *
  * @author USUARIO
  */
 @Service
-public class ServiciosReservacion {
+public class ServiciosReservaciones {
          @Autowired
-    private RepositorioReservacion metodosCrud;
+    private RepositorioReservaciones metodosCrud;
     
-    public List<Reservacion> getAll(){
+    public List<Reservaciones> getAll(){
         return metodosCrud.getAll();
     }
 
-    public Optional<Reservacion> getReservation(int reservationId) {
+    public Optional<Reservaciones> getReservation(int reservationId) {
         return metodosCrud.getReservation(reservationId);
     }
 
-    public Reservacion save(Reservacion reservation){
+    public Reservaciones save(Reservaciones reservation){
         if(reservation.getIdReservation()==null){
             return metodosCrud.save(reservation);
         }else{
-            Optional<Reservacion> e= metodosCrud.getReservation(reservation.getIdReservation());
+            Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
             if(e.isEmpty()){
                 return metodosCrud.save(reservation);
             }else{
@@ -41,9 +41,9 @@ public class ServiciosReservacion {
         }
     }
     
-    public Reservacion update(Reservacion reservacion){
+    public Reservaciones update(Reservaciones reservacion){
         if(reservacion.getIdReservation()!=null){
-            Optional<Reservacion> e= metodosCrud.getReservation(reservacion.getIdReservation());
+            Optional<Reservaciones> e= metodosCrud.getReservation(reservacion.getIdReservation());
             if(!e.isEmpty()){
 
                 if(reservacion.getStartDate()!=null){

@@ -5,12 +5,12 @@
 package tutoria.domingo.interfaces;
 
 import org.springframework.data.repository.CrudRepository;
-import tutoria.domingo.modelo.Ortesis;
+import tutoria.domingo.modelo.Game;
 
 /**
  *
  * @author USUARIO
  */
-public interface InterfaceOrtesis extends CrudRepository<Ortesis,Integer> {
+public interface InterfaceGame extends CrudRepository<Game,Integer> {
     
 }

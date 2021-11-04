@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tutoria.domingo.web;
+package tutoria.domingo.controlador;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,42 +19,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import tutoria.domingo.modelo.Reservacion;
-import tutoria.domingo.servicios.ServiciosReservacion;
+import tutoria.domingo.modelo.Mensaje;
+import tutoria.domingo.servicios.ServiciosMensaje;
 
 /**
  *
  * @author USUARIO
  */
-
 @RestController
-@RequestMapping("/api/Reservation")
+@RequestMapping("/api/Message")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class WebReservacion {
-     @Autowired
-    private ServiciosReservacion servicio;
+public class ControladorMensaje {
+    @Autowired
+    private ServiciosMensaje servicio;
     @GetMapping("/all")
-    public List<Reservacion> getReservations(){
+    public List<Mensaje> getMessages(){
         return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservacion> getReservation(@PathVariable("id") int reservationId) {
-        return servicio.getReservation(reservationId);
+    public Optional<Mensaje> getMessage(@PathVariable("id") int messageId) {
+        return servicio.getMessage(messageId);
     }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservacion save(@RequestBody Reservacion reservation) {
-        return servicio.save(reservation);
+    public Mensaje save(@RequestBody Mensaje message) {
+        return servicio.save(message);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservacion update(@RequestBody Reservacion reservacion) {
-        return servicio.update(reservacion);
+    public Mensaje update(@RequestBody Mensaje mensaje) {
+        return servicio.update(mensaje);
     }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int reservationId) {
-        return servicio.deleteReservation(reservationId);
+    public boolean delete(@PathVariable("id") int messageId) {
+        return servicio.deleteMessage(messageId);
     }
 }

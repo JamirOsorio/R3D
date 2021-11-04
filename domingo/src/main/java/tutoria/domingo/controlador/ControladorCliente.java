@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tutoria.domingo.web;
+package tutoria.domingo.controlador;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,51 +19,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import tutoria.domingo.modelo.Ortesis;
-import tutoria.domingo.servicios.ServiciosOrtesis;
+import tutoria.domingo.modelo.Cliente;
+import tutoria.domingo.servicios.ServiciosCliente;
 
 /**
  *
  * @author USUARIO
  */
 @RestController
-@RequestMapping("/api/Ortopedic")
+@RequestMapping("/api/Client")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class WebOrtesis {
+public class ControladorCliente {
     
-    @GetMapping("/holaMundo")
-    public String saludad(){
-    return "Hola Mundo Tutoria";
+          @Autowired
+    private ServiciosCliente servicios;
+    @GetMapping("/all")
+    public List <Cliente> getCliente(){
+        return servicios.getAll();
     }
-
-    
-    @Autowired
-    private ServiciosOrtesis servicio;
-    @GetMapping("all")
-    public List <Ortesis> getOrthesis(){
-        return servicio.getAll();
-    }
-    
     @GetMapping("/{id}")
-    public Optional<Ortesis> getOrthesis(@PathVariable("id") int idOrthesis) {
-        return servicio.getOrthesis(idOrthesis);
+    public Optional<Cliente> getCliente(@PathVariable("id") int clientid) {
+        return servicios.getCliente(clientid);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Ortesis save(@RequestBody Ortesis orthesis) {
-        return servicio.save(orthesis);
+    public Cliente save(@RequestBody Cliente cliente) {
+        return servicios.save(cliente);
     }
-    @PutMapping("/update")
+     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Ortesis update(@RequestBody Ortesis ortesis) {
-        return servicio.update(ortesis);
+    public Cliente update(@RequestBody Cliente cliente) {
+        return servicios.update(cliente);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int ortesisId) {
-        return servicio.deleteOrtesis(ortesisId);
+    public boolean delete(@PathVariable("id") int clienteId) {
+        return servicios.deleteClient(clienteId);
     }
-    
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tutoria.domingo.web;
+package tutoria.domingo.controlador;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,43 +19,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import tutoria.domingo.modelo.Cliente;
-import tutoria.domingo.servicios.ServiciosCliente;
+import tutoria.domingo.modelo.Game;
+import tutoria.domingo.servicios.ServiciosGame;
 
 /**
  *
  * @author USUARIO
  */
 @RestController
-@RequestMapping("/api/Client")
+@RequestMapping("/api/Game")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class WebCliente {
+public class ControladorGame {
     
-          @Autowired
-    private ServiciosCliente servicios;
+    @Autowired
+    private ServiciosGame servicio;
     @GetMapping("/all")
-    public List <Cliente> getCliente(){
-        return servicios.getAll();
+    public List<Game> getGames(){
+        return servicio.getAll();
     }
+
     @GetMapping("/{id}")
-    public Optional<Cliente> getCliente(@PathVariable("id") int clientid) {
-        return servicios.getCliente(clientid);
+    public Optional<Game> getGame(@PathVariable("id") int gameId) {
+        return servicio.getGame(gameId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente) {
-        return servicios.save(cliente);
+    public Game save(@RequestBody Game game) {
+        return servicio.save(game);
     }
-     @PutMapping("/update")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente update(@RequestBody Cliente cliente) {
-        return servicios.update(cliente);
+    public Game update(@RequestBody Game game) {
+        return servicio.update(game);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int clienteId) {
-        return servicios.deleteClient(clienteId);
-    }
+    public boolean delete(@PathVariable("id") int gameId) {
+        return servicio.deleteGame(gameId);
+    } 
+    
 }

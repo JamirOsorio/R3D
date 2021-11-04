@@ -22,28 +22,29 @@ import javax.persistence.Table;
  * @author USUARIO
  */
 @Entity
-@Table(name = "ortopedic")
-public class Ortesis implements Serializable{
+@Table (name="Game")
+public class Game implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String  brand;
-    private Integer year;    
+    private String developer;
+    private Integer year;
     private String description;
     
     @ManyToOne
-    @JoinColumn(name="categoryid")
-    @JsonIgnoreProperties("ortopedics")
+    @JoinColumn(name = "categoryId")
+    @JsonIgnoreProperties("games")
     private Categoria category;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
-    @JsonIgnoreProperties({"ortopedic","client"})
+
+     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "game")
+    @JsonIgnoreProperties({"game", "client"})
     private List<Mensaje> messages;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
-    @JsonIgnoreProperties({"ortopedic","message"})
-    public List<Reservacion> reservations;
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "game")
+    @JsonIgnoreProperties({"game", "client"})
+    private List<Reservaciones> reservations;
 
     public Integer getId() {
         return id;
@@ -61,12 +62,12 @@ public class Ortesis implements Serializable{
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getDeveloper() {
+        return developer;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setDeveloper(String developer) {
+        this.developer = developer;
     }
 
     public Integer getYear() {
@@ -101,16 +102,15 @@ public class Ortesis implements Serializable{
         this.messages = messages;
     }
 
-    public List<Reservacion> getReservations() {
+    public List<Reservaciones> getReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservacion> reservations) {
+    public void setReservations(List<Reservaciones> reservations) {
         this.reservations = reservations;
     }
+
     
-    
-    
-    
+       
     
 }
